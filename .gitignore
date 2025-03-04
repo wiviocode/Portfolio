@@ -1,3 +1,6 @@
 *.MP4
 *.mov
 *.png
+*.jpg
+/assets
+.DS_Store

@@ -2,9 +2,44 @@
 document.getElementById("year").textContent = new Date().getFullYear();
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Get all images in the portfolio grid and convert NodeList to array
-  var images = document.querySelectorAll('.portfolio-item img');
-  var imagesArray = Array.from(images);
+  // Get all portfolio images as an array
+  var images = Array.from(document.querySelectorAll('.portfolio-item img'));
+
+  // Sort images based on their vertical position (top-to-bottom)
+  var sortedImages = images.slice().sort(function(a, b) {
+    return a.getBoundingClientRect().top - b.getBoundingClientRect().top;
+  });
+
+  // Assign a delay (in milliseconds) for each image based on its sorted order
+  sortedImages.forEach(function(img, index) {
+    img.dataset.delay = index * 150; // 150ms extra delay per image
+  });
+
+  // For each image, add a loading spinner and then fade it in after its delay once loaded
+  images.forEach(function(img) {
+    var spinner = document.createElement('div');
+    spinner.classList.add('loading-spinner');
+    // Ensure the parent container is relatively positioned for proper spinner overlay
+    if (img.parentElement) {
+      img.parentElement.style.position = 'relative';
+      img.parentElement.appendChild(spinner);
+    }
+    function onImageLoaded() {
+      var delay = parseInt(img.dataset.delay) || 0;
+      setTimeout(function(){
+         img.classList.add('loaded');
+         spinner.remove();
+      }, delay);
+    }
+    if (img.complete) {
+      onImageLoaded();
+    } else {
+      img.addEventListener('load', onImageLoaded);
+    }
+  });
+
+  // Existing lightbox functionality for portfolio images
+  var imagesArray = images;
   var currentIndex = -1;
   var lightbox = document.getElementById('lightbox');
   var lightboxImg = document.getElementById('lightbox-img');
@@ -12,26 +47,23 @@ document.addEventListener('DOMContentLoaded', function() {
   var prevArrow = document.querySelector('.lightbox .prev');
   var nextArrow = document.querySelector('.lightbox .next');
 
-  // Function to update lightbox image instantly
   function updateLightboxInstant() {
     lightboxImg.src = imagesArray[currentIndex].src;
   }
 
-  // Open lightbox when an image is clicked (with a slight fade-in on open)
   imagesArray.forEach(function(img, index) {
     img.addEventListener('click', function() {
       currentIndex = index;
       lightboxImg.style.opacity = 0; // start hidden
       lightboxImg.src = this.src;
       lightbox.classList.add('active');
-      // Trigger a very brief fade-in for initial open
+      // Brief fade-in for initial open
       setTimeout(function(){
          lightboxImg.style.opacity = 1;
       }, 50);
     });
   });
 
-  // Close lightbox when clicking the close button or outside the image
   closeBtn.addEventListener('click', function() {
     lightbox.classList.remove('active');
   });
@@ -42,10 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Keyboard navigation (instant update)
   document.addEventListener('keydown', function(e) {
     if (!lightbox.classList.contains('active')) return;
-
     if (e.key === "ArrowRight") {
       currentIndex = (currentIndex + 1) % imagesArray.length;
       updateLightboxInstant();
@@ -57,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // On-screen arrow button navigation (instant update)
   prevArrow.addEventListener('click', function(e) {
     e.stopPropagation();
     currentIndex = (currentIndex - 1 + imagesArray.length) % imagesArray.length;
