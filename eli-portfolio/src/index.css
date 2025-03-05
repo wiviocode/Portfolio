@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --white-hsl: 0, 0%, 100%;
+    --black-hsl: 0, 0%, 0%;
+    --accent-hsl: 0, 82%, 49%;
+    --light-accent-hsl: 45, 11.76%, 86.67%;
+    --dark-accent-hsl: 111.43, 11.11%, 12.35%;
+  }
+
+  body {
+    @apply font-serif bg-white text-black m-0 p-0 leading-relaxed overflow-x-hidden;
+  }
+
+  .lightbox-open {
+    @apply overflow-hidden;
+  }
+}
+
+@layer components {
+  .site-header {
+    @apply flex justify-between items-center px-10 py-5 border-b border-black/10 bg-white/98 sticky top-0 z-50 shadow-sm transition-transform duration-300;
+  }
+
+  .site-header.hide {
+    @apply -translate-y-full;
+  }
+
+  .logo {
+    @apply font-serif text-4xl text-accent transition-colors duration-200;
+  }
+
+  .logo:hover {
+    @apply text-accent/80;
+  }
+
+  .site-nav ul {
+    @apply flex items-center gap-5 m-0 p-0 list-none;
+  }
+
+  .site-nav a {
+    @apply no-underline text-black transition-colors duration-200 text-lg px-3 py-2 relative inline-flex items-center;
+  }
+
+  .site-nav a:hover {
+    @apply text-accent;
+  }
+
+  .site-nav a.active {
+    @apply text-accent;
+  }
+
+  .site-nav a.active::after {
+    @apply content-[''] absolute left-0 right-0 -bottom-1 h-0.5 bg-accent scale-100 origin-center transition-transform duration-300;
+  }
+
+  .site-nav a:not(.active)::after {
+    @apply content-[''] absolute left-0 right-0 -bottom-1 h-0.5 bg-accent scale-0 origin-center transition-transform duration-300;
+  }
+
+  .site-nav a:hover::after {
+    @apply scale-100;
+  }
+}
+
+@layer utilities {
+  .animate-in {
+    animation: in 0.2s ease-out;
+  }
+
+  .animate-out {
+    animation: out 0.2s ease-in;
+  }
+}

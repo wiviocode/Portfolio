@@ -122,17 +122,23 @@ body.lightbox-open {
   margin-left: 10px;
 }
 
-.site-nav li.social a svg {
-  width: 24px;
-  height: 24px;
-  vertical-align: middle;
-  fill: hsl(var(--black-hsl));
-  transition: fill var(--transition-fast), transform var(--transition-fast);
+.site-nav li.social a {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.site-nav li.social a:hover svg,
-.site-nav li.social a:focus svg {
-  fill: hsl(var(--accent-hsl));
+.social-icon {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.site-nav li.social a:hover .social-icon,
+.site-nav li.social a:focus .social-icon {
+  color: hsl(var(--accent-hsl));
   transform: scale(1.1);
 }
 
@@ -334,9 +340,7 @@ body.lightbox-open {
   user-select: none;
   padding: 20px;
   z-index: 1010;
-  transition: color var(--transition-fast), transform var(--transition-fast), background var(--transition-fast);
-  background: rgba(0,0,0,0.2);
-  border-radius: 50%;
+  transition: color var(--transition-fast), transform var(--transition-fast);
   width: 30px;
   height: 30px;
   display: flex;
@@ -346,7 +350,6 @@ body.lightbox-open {
 
 .lightbox .arrow:hover {
   color: hsl(var(--accent-hsl));
-  background: rgba(0,0,0,0.5);
   transform: translateY(-50%) scale(1.1);
 }
 
@@ -442,38 +445,6 @@ body.lightbox-open {
 .links-section a:hover::after {
   transform: scaleX(1);
   transform-origin: left;
-}
-
-/* Dead simple tooltip - just a box with text */
-.custom-tooltip {
-  position: fixed;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  padding: 5px 8px;
-  border-radius: 3px;
-  font-size: 13px;
-  pointer-events: none;
-  z-index: 1000;
-  max-width: 200px;
-  opacity: 0;
-  transition: opacity 0.2s;
-  text-align: center;
-  box-shadow: none;
-  border: none;
-  /* Reset any potential browser defaults */
-  text-decoration: none;
-  content: none;
-}
-
-/* Explicitly remove any potential pseudo-elements */
-.custom-tooltip::before,
-.custom-tooltip::after {
-  display: none;
-  content: none;
-}
-
-.custom-tooltip.visible {
-  opacity: 1;
 }
 
 /* Responsive Styles */

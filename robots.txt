@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /videography
+Allow: /assets/images/
+Allow: /css/
+Allow: /js/
+
+# Prevent access to admin and sensitive directories
+Disallow: /admin/
+Disallow: /includes/
+Disallow: /data/
+
+# Sitemap
+Sitemap: https://elilarson.com/sitemap.xml
+
+# Crawl-delay for better server performance
+Crawl-delay: 10 

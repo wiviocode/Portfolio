@@ -1,0 +1,22 @@
+/* Styles for when JavaScript is disabled */
+.portfolio-item img {
+  opacity: 1 !important;
+}
+
+.loading-spinner {
+  display: none !important;
+}
+
+/* Ensure video thumbnails are visible */
+.video-item video {
+  opacity: 1 !important;
+}
+
+/* Show alternative text for interactive elements */
+[data-tooltip]::before {
+  content: attr(data-tooltip);
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #666;
+} 
