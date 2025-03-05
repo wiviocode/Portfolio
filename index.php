@@ -52,12 +52,22 @@ include 'includes/header.php';
     <section class="portfolio-grid">
       <?php foreach ($imageFiles as $img): ?>
       <div class="portfolio-item">
-        <img data-src="assets/images/<?php echo $img['file']; ?>"
-             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 <?php echo $img['width']; ?> <?php echo $img['height']; ?>'%3E%3C/svg%3E"
-             alt="<?php echo htmlspecialchars($img['alt']); ?>"
-             width="<?php echo $img['width']; ?>"
-             height="<?php echo $img['height']; ?>"
-             loading="lazy">
+        <picture>
+          <!-- WebP version -->
+          <source
+            type="image/webp"
+            srcset="assets/images/webp/<?php echo pathinfo($img['file'], PATHINFO_FILENAME); ?>.webp"
+            data-srcset="assets/images/webp/<?php echo pathinfo($img['file'], PATHINFO_FILENAME); ?>.webp"
+          >
+          <!-- Original image as fallback -->
+          <img data-src="assets/images/<?php echo $img['file']; ?>"
+               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 <?php echo $img['width']; ?> <?php echo $img['height']; ?>'%3E%3C/svg%3E"
+               alt="<?php echo htmlspecialchars($img['alt']); ?>"
+               width="<?php echo $img['width']; ?>"
+               height="<?php echo $img['height']; ?>"
+               loading="lazy"
+               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">
+        </picture>
       </div>
       <?php endforeach; ?>
     </section>

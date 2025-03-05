@@ -82,8 +82,8 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
     <nav class="site-nav" aria-label="Main navigation">
       <ul>
         <li><a href="/" <?php echo ($current_page === 'index.php') ? 'class="active"' : ''; ?>>Photography</a></li>
-        <li><a href="/videography" <?php echo ($current_page === 'videography.php') ? 'class="active"' : ''; ?>>Videography</a></li>
-        <li><a href="/about" <?php echo ($current_page === 'about.php') ? 'class="active"' : ''; ?>>About Me</a></li>
+        <li><a href="/videography.php" <?php echo ($current_page === 'videography.php') ? 'class="active"' : ''; ?>>Videography</a></li>
+        <li><a href="/about.php" <?php echo ($current_page === 'about.php') ? 'class="active"' : ''; ?>>About Me</a></li>
         <li class="social">
           <a href="https://www.instagram.com/strike_lnk/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" class="social-icon" aria-hidden="true">
