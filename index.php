@@ -1,4 +1,12 @@
 <?php
+// Load custom order data if available
+$orderDataFile = "data/image_order.json";
+$orderData = [];
+if (file_exists($orderDataFile)) {
+    $jsonData = file_get_contents($orderDataFile);
+    $orderData = json_decode($jsonData, true);
+}
+
 // Dynamically load images from assets/images folder
 $dirPath = "assets/images";
 $files = scandir($dirPath);
@@ -8,19 +16,27 @@ foreach($files as $file) {
     // Get image dimensions and metadata
     $imagePath = $dirPath . '/' . $file;
     $imageInfo = getimagesize($imagePath);
+    // Get order (default to 999 if not set)
+    $order = isset($orderData[$file]) ? $orderData[$file] : 999;
     // Create image object with metadata
     $imageObj = [
       'file' => $file,
       'width' => $imageInfo[0],
       'height' => $imageInfo[1],
       'alt' => pathinfo($file, PATHINFO_FILENAME), // Use filename as alt text
+      'order' => $order
     ];
     $imageFiles[] = $imageObj;
   }
 }
 
-// Sort images by name for consistency
+// Sort images by custom order
 usort($imageFiles, function($a, $b) {
+  // First by order
+  if ($a['order'] !== $b['order']) {
+    return $a['order'] - $b['order'];
+  }
+  // Then by name as fallback
   return strcmp($a['file'], $b['file']);
 });
 

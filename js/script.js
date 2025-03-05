@@ -237,6 +237,54 @@ document.addEventListener('DOMContentLoaded', function() {
       videoObserver.observe(video);
     });
   }
+
+  // ===== CUSTOM TOOLTIP FOR IMAGES =====
+  function createTooltip() {
+    // Remove existing tooltip if present
+    const existingTooltip = document.querySelector('.custom-tooltip');
+    if (existingTooltip) {
+      existingTooltip.remove();
+    }
+    
+    // Create new tooltip element
+    const tooltip = document.createElement('div');
+    tooltip.className = 'custom-tooltip';
+    document.body.appendChild(tooltip);
+    
+    return tooltip;
+  }
+
+  function initImageTooltips() {
+    const tooltip = createTooltip();
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    
+    portfolioItems.forEach(item => {
+      const img = item.querySelector('img');
+      
+      // Mouse events
+      item.addEventListener('mouseenter', function(e) {
+        tooltip.textContent = img.alt || '';
+        tooltip.classList.add('visible');
+        positionTooltip(e, tooltip);
+      });
+      
+      item.addEventListener('mousemove', function(e) {
+        positionTooltip(e, tooltip);
+      });
+      
+      item.addEventListener('mouseleave', function() {
+        tooltip.classList.remove('visible');
+      });
+    });
+  }
+
+  function positionTooltip(e, tooltip) {
+    tooltip.style.left = (e.clientX + 10) + 'px';
+    tooltip.style.top = (e.clientY - 30) + 'px';
+  }
+
+  // Initialize tooltips for portfolio images
+  initImageTooltips();
 });
 
 // ===== HIDE/SHOW HEADER ON SCROLL =====

@@ -50,7 +50,7 @@ body.lightbox-open {
 /* Smaller logo now */
 .logo {
   font-family: 'Instrument Serif', serif;
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: hsl(var(--accent-hsl));
   transition: color var(--transition-fast);
 }
@@ -442,6 +442,38 @@ body.lightbox-open {
 .links-section a:hover::after {
   transform: scaleX(1);
   transform-origin: left;
+}
+
+/* Dead simple tooltip - just a box with text */
+.custom-tooltip {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 5px 8px;
+  border-radius: 3px;
+  font-size: 13px;
+  pointer-events: none;
+  z-index: 1000;
+  max-width: 200px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  text-align: center;
+  box-shadow: none;
+  border: none;
+  /* Reset any potential browser defaults */
+  text-decoration: none;
+  content: none;
+}
+
+/* Explicitly remove any potential pseudo-elements */
+.custom-tooltip::before,
+.custom-tooltip::after {
+  display: none;
+  content: none;
+}
+
+.custom-tooltip.visible {
+  opacity: 1;
 }
 
 /* Responsive Styles */

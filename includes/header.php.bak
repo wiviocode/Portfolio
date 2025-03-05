@@ -58,7 +58,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
           </a>
         </li>
         <li class="social">
-          <a href="https://www.linkedin.com/in/eli-larson/" target="_blank" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/eli-larson-b191152b1/" target="_blank" aria-label="LinkedIn">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
               <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1A53.79 53.79 0 1 1 107.58 54.32a53.8 53.8 0 0 1-53.79 53.79zM447.9 448h-92.68V302.4c0-34.73-.69-79.44-48.34-79.44-48.34 0-55.8 37.69-55.8 76.55V448H158.4V148.9h89V184h1.28a97.74 97.74 0 0 1 87.92-48.34c94 0 111.28 61.88 111.28 142.3V448z"/>
             </svg>
