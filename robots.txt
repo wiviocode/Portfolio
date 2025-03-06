@@ -12,7 +12,7 @@ Disallow: /includes/
 Disallow: /data/
 
 # Sitemap
-Sitemap: https://elilarson.com/sitemap.xml
+Sitemap: https://eli-larson.com/sitemap.xml
 
 # Crawl-delay for better server performance
 Crawl-delay: 10 
