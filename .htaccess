@@ -6,6 +6,17 @@
     RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+    # Handle API requests with appropriate JSON error responses
+    RewriteCond %{HTTP:Accept} application/json [NC,OR]
+    RewriteCond %{HTTP:Content-Type} application/json [NC]
+    RewriteRule ^api/ - [E=IS_API_REQUEST:1]
+    
+    # Route API 404 errors to JSON response
+    RewriteCond %{ENV:IS_API_REQUEST} =1
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ /404-json.php [L]
+
     # Remove .php extension
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME}\.php -f

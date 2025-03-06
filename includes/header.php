@@ -75,9 +75,9 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   <!-- Favicon -->
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" href="https://eli-larson.com/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="https://eli-larson.com/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="https://eli-larson.com/apple-touch-icon.png">
   
   <!-- CSS with preload for critical resources -->
   <link rel="preload" href="/css/style.css" as="style">
