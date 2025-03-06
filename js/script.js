@@ -168,6 +168,64 @@ document.addEventListener('DOMContentLoaded', function() {
       videoObserver.observe(video);
     });
   }
+  
+  // ===== VIDEO PLAY FUNCTIONALITY =====
+  const videoItems = document.querySelectorAll('.video-item');
+  
+  // Add click event listeners to each video item
+  videoItems.forEach(videoItem => {
+    videoItem.addEventListener('click', function(e) {
+      e.preventDefault();
+      const video = this.querySelector('video');
+      
+      if (!video) return;
+      
+      // Make sure the video source is loaded
+      const source = video.querySelector('source');
+      if (source && source.dataset.src && !source.src) {
+        source.src = source.dataset.src;
+        video.load();
+      }
+      
+      // Add controls if not already present
+      if (!video.hasAttribute('controls')) {
+        video.setAttribute('controls', '');
+      }
+      
+      // Pause all other videos
+      videos.forEach(v => {
+        if (v !== video && !v.paused) {
+          v.pause();
+          v.parentElement.classList.remove('playing');
+        }
+      });
+      
+      // Toggle play/pause for this video
+      if (video.paused) {
+        video.play()
+          .then(() => {
+            // Success - add playing class
+            videoItem.classList.add('playing');
+            console.log('Video playing successfully');
+          })
+          .catch(error => {
+            // Handle error
+            console.error('Video play error:', error);
+            alert('There was an issue playing this video. Please try again.');
+          });
+      } else {
+        video.pause();
+        videoItem.classList.remove('playing');
+      }
+    });
+  });
+
+  // Add ended event to videos to reset state
+  videos.forEach(video => {
+    video.addEventListener('ended', function() {
+      this.parentElement.classList.remove('playing');
+    });
+  });
 
   // Remove any existing tooltips
   const existingTooltip = document.querySelector('.custom-tooltip');

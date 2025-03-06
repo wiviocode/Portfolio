@@ -21,6 +21,9 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
   </script>
 
   <?php if ($current_page === 'index.php'): ?>
+    <title>Eli Larson - Photography & Videography</title>
+    <meta name="description" content="Professional photographer and videographer specializing in sports, events, and creative storytelling based in Nebraska.">
+  <?php elseif ($current_page === 'photography.php'): ?>
     <title>Photography - Eli Larson</title>
     <meta name="description" content="Professional photography portfolio of Eli Larson, specializing in sports photography.">
   <?php elseif ($current_page === 'videography.php'): ?>
@@ -45,10 +48,23 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
   <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
   
   <!-- Open Graph tags for social sharing -->
-  <meta property="og:title" content="Eli Larson - Photography & Videography">
-  <meta property="og:description" content="Professional photography and videography portfolio by Eli Larson.">
-  <meta property="og:url" content="https://<?php echo $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>">
+  <meta property="og:title" content="<?php 
+    if ($current_page === 'index.php') echo 'Eli Larson - Photography & Videography';
+    elseif ($current_page === 'photography.php') echo 'Photography - Eli Larson';
+    elseif ($current_page === 'videography.php') echo 'Videography - Eli Larson';
+    elseif ($current_page === 'about.php') echo 'About Me - Eli Larson';
+  ?>">
+  <meta property="og:description" content="<?php 
+    if ($current_page === 'index.php') echo 'Professional photographer and videographer specializing in sports, events, and creative storytelling based in Nebraska.';
+    elseif ($current_page === 'photography.php') echo 'Professional photography portfolio of Eli Larson, specializing in sports photography.';
+    elseif ($current_page === 'videography.php') echo 'Professional videography projects by Eli Larson, featuring sports media and creative content.';
+    elseif ($current_page === 'about.php') echo 'Learn about Eli Larson, a professional photographer and videographer specializing in sports media.';
+  ?>">
+  <meta property="og:url" content="https://eli-larson.com<?php echo $_SERVER['REQUEST_URI']; ?>">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://eli-larson.com/assets/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   
   <!-- Theme Color for mobile browsers -->
   <meta name="theme-color" content="#ffffff">
@@ -81,7 +97,8 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
     <div class="logo">Eli Larson</div>
     <nav class="site-nav" aria-label="Main navigation">
       <ul>
-        <li><a href="/" <?php echo ($current_page === 'index.php') ? 'class="active"' : ''; ?>>Photography</a></li>
+        <li><a href="/" <?php echo ($current_page === 'index.php') ? 'class="active"' : ''; ?>>Home</a></li>
+        <li><a href="/photography.php" <?php echo ($current_page === 'photography.php') ? 'class="active"' : ''; ?>>Photography</a></li>
         <li><a href="/videography.php" <?php echo ($current_page === 'videography.php') ? 'class="active"' : ''; ?>>Videography</a></li>
         <li><a href="/about.php" <?php echo ($current_page === 'about.php') ? 'class="active"' : ''; ?>>About Me</a></li>
         <li class="social">
