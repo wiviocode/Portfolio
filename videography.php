@@ -15,11 +15,24 @@ foreach($files as $file) {
   if(preg_match("/\.(mp4|mov|webm|ogg)$/i", $file)) {
     // Get order (default to 999 if not set)
     $order = isset($orderData[$file]) ? $orderData[$file] : 999;
+    
+    // Get filename without extension for thumbnail matching
+    $fileNameWithoutExt = pathinfo($file, PATHINFO_FILENAME);
+    
+    // Check for WebP thumbnail first, then fallback to jpg
+    $thumbnailPath = "";
+    if (file_exists("assets/video-thumbnails/{$fileNameWithoutExt}.webp")) {
+      $thumbnailPath = "assets/video-thumbnails/{$fileNameWithoutExt}.webp";
+    } elseif (file_exists("assets/video-thumbnails/{$fileNameWithoutExt}.jpg")) {
+      $thumbnailPath = "assets/video-thumbnails/{$fileNameWithoutExt}.jpg";
+    }
+    
     // Create video object with metadata
     $videoObj = [
       'file' => $file,
-      'title' => ucwords(str_replace(['_', '-'], ' ', pathinfo($file, PATHINFO_FILENAME))),
-      'order' => $order
+      'title' => ucwords(str_replace(['_', '-'], ' ', $fileNameWithoutExt)),
+      'order' => $order,
+      'thumbnail' => $thumbnailPath
     ];
     $videoFiles[] = $videoObj;
   }
@@ -52,8 +65,12 @@ include 'includes/header.php';
         <video 
           id="video-<?php echo md5($video['file']); ?>"
           preload="metadata" 
-          playsinline>
-          <source src="assets/videos/<?php echo $video['file']; ?>" type="video/mp4">
+          playsinline
+          <?php if (!empty($video['thumbnail'])): ?>
+          poster="<?php echo $baseUrl; ?>/<?php echo $video['thumbnail']; ?>?v=<?php echo $cacheBuster; ?>"
+          <?php endif; ?>
+          >
+          <source src="<?php echo $baseUrl; ?>/assets/videos/<?php echo $video['file']; ?>" type="video/mp4">
           Your browser does not support the video tag.
         </video>
         <div class="video-title"><?php echo htmlspecialchars($video['title']); ?></div>

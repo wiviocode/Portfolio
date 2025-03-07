@@ -58,11 +58,11 @@ include 'includes/header.php';
           <!-- WebP version -->
           <source
             type="image/webp"
-            srcset="assets/images/webp/<?php echo pathinfo($img['file'], PATHINFO_FILENAME); ?>.webp"
-            data-srcset="assets/images/webp/<?php echo pathinfo($img['file'], PATHINFO_FILENAME); ?>.webp"
+            srcset="<?php echo $baseUrl; ?>/assets/images/webp/<?php echo pathinfo($img['file'], PATHINFO_FILENAME); ?>.webp"
+            data-srcset="<?php echo $baseUrl; ?>/assets/images/webp/<?php echo pathinfo($img['file'], PATHINFO_FILENAME); ?>.webp"
           >
           <!-- Original image as fallback -->
-          <img data-src="assets/images/<?php echo $img['file']; ?>"
+          <img data-src="<?php echo $baseUrl; ?>/assets/images/<?php echo $img['file']; ?>"
                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 <?php echo $img['width']; ?> <?php echo $img['height']; ?>'%3E%3C/svg%3E"
                alt="<?php echo htmlspecialchars($img['alt']); ?>"
                width="<?php echo $img['width']; ?>"

@@ -12,6 +12,17 @@
   </div>
 
   <!-- Script for image lazy loading and performance -->
-  <script src="js/script.js"></script>
+  <?php
+  // Ensure we have the actual JS file path
+  $jsPath = __DIR__ . '/../js/script.js';
+  $jsUrl = $baseUrl . '/js/script.js';
+  
+  // Add cache busting if the file exists
+  if (file_exists($jsPath)) {
+    $jsModified = filemtime($jsPath);
+    $jsUrl .= '?v=' . $jsModified;
+  }
+  ?>
+  <script src="<?php echo $jsUrl; ?>"></script>
 </body>
 </html> 

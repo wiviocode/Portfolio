@@ -16,7 +16,7 @@ include 'includes/header.php';
       <h2>Server Error</h2>
       <p>We're experiencing some technical difficulties. Please try again later.</p>
       <div class="error-actions">
-        <a href="/" class="cta-button primary">Return Home</a>
+        <a href="index.php" class="cta-button primary">Return Home</a>
         <a href="javascript:history.back()" class="cta-button secondary">Go Back</a>
       </div>
     </div>

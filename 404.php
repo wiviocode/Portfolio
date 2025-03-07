@@ -16,9 +16,9 @@ include 'includes/header.php';
       <h2>Page Not Found</h2>
       <p>The page you're looking for doesn't exist or has been moved.</p>
       <div class="error-actions">
-        <a href="/" class="cta-button primary">Return Home</a>
-        <a href="/photography" class="cta-button secondary">View Photography</a>
-        <a href="/videography" class="cta-button secondary">Watch Videography</a>
+        <a href="index.php" class="cta-button primary">Return Home</a>
+        <a href="photography.php" class="cta-button secondary">View Photography</a>
+        <a href="videography.php" class="cta-button secondary">Watch Videography</a>
       </div>
     </div>
   </div>

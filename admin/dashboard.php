@@ -100,9 +100,22 @@ if (isset($_GET['logout'])) {
                 <p>Manage the order of videos in your videography portfolio.</p>
                 <a href="sort_videos.php" class="admin-btn">Manage Videos</a>
             </div>
+            
+            <div class="admin-card">
+                <h2>Upload Files</h2>
+                <p>Upload new images and videos to your portfolio.</p>
+                <a href="upload.php" class="admin-btn">Upload Files</a>
+            </div>
+            
+            <div class="admin-card">
+                <h2>Video Thumbnails</h2>
+                <p>Generate thumbnails for videos that don't have one.</p>
+                <a href="generate_thumbnails.php" class="admin-btn">Generate Thumbnails</a>
+            </div>
         </div>
         
         <div style="text-align: center;">
+            <a href="check_requirements.php" class="admin-btn" style="margin-right: 10px; background-color: #3498db;">Check System Requirements</a>
             <a href="?logout=1" class="admin-btn logout">Logout</a>
         </div>
     </div>

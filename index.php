@@ -107,8 +107,8 @@ include 'includes/header.php';
       <h1>Capturing Moments That Matter</h1>
       <p>Professional photography and videography with a focus on sports, events, and creative storytelling.</p>
       <div class="hero-cta">
-        <a href="/photography.php" class="cta-button primary">View Photography</a>
-        <a href="/videography.php" class="cta-button secondary">Watch Videography</a>
+        <a href="photography.php" class="cta-button primary">View Photography</a>
+        <a href="videography.php" class="cta-button secondary">Watch Videography</a>
       </div>
     </div>
     <div class="hero-image">
@@ -117,10 +117,10 @@ include 'includes/header.php';
           <!-- WebP version -->
           <source
             type="image/webp"
-            srcset="assets/images/webp/<?php echo pathinfo($featuredImages[0]['file'], PATHINFO_FILENAME); ?>.webp"
+            srcset="<?php echo $baseUrl; ?>/assets/images/webp/<?php echo pathinfo($featuredImages[0]['file'], PATHINFO_FILENAME); ?>.webp"
           >
           <!-- Original image as fallback -->
-          <img src="assets/images/<?php echo $featuredImages[0]['file']; ?>"
+          <img src="<?php echo $baseUrl; ?>/assets/images/<?php echo $featuredImages[0]['file']; ?>"
                alt="<?php echo htmlspecialchars($featuredImages[0]['alt']); ?>"
                width="<?php echo $featuredImages[0]['width']; ?>"
                height="<?php echo $featuredImages[0]['height']; ?>">
@@ -139,9 +139,9 @@ include 'includes/header.php';
           <div class="card-image">
             <?php if (count($featuredImages) > 1): ?>
               <picture>
-                <source type="image/webp" srcset="assets/images/webp/<?php echo pathinfo($featuredImages[1]['file'], PATHINFO_FILENAME); ?>.webp">
+                <source type="image/webp" srcset="<?php echo $baseUrl; ?>/assets/images/webp/<?php echo pathinfo($featuredImages[1]['file'], PATHINFO_FILENAME); ?>.webp">
                 <img 
-                  src="assets/images/<?php echo $featuredImages[1]['file']; ?>" 
+                  src="<?php echo $baseUrl; ?>/assets/images/<?php echo $featuredImages[1]['file']; ?>" 
                   alt="Photography sample - <?php echo htmlspecialchars(pathinfo($featuredImages[1]['file'], PATHINFO_FILENAME)); ?>"
                   class="featured-crop">
               </picture>
@@ -150,7 +150,7 @@ include 'includes/header.php';
           <div class="card-content">
             <h3>Photography</h3>
             <p>Specializing in sports photography that captures the emotion, intensity, and defining moments of the game.</p>
-            <a href="/photography.php" class="card-link">View Portfolio</a>
+            <a href="photography.php" class="card-link">View Portfolio</a>
           </div>
         </div>
         
@@ -159,9 +159,9 @@ include 'includes/header.php';
           <div class="card-image">
             <?php if (count($featuredImages) > 2): ?>
               <picture>
-                <source type="image/webp" srcset="assets/images/webp/<?php echo pathinfo($featuredImages[2]['file'], PATHINFO_FILENAME); ?>.webp">
+                <source type="image/webp" srcset="<?php echo $baseUrl; ?>/assets/images/webp/<?php echo pathinfo($featuredImages[2]['file'], PATHINFO_FILENAME); ?>.webp">
                 <img 
-                  src="assets/images/<?php echo $featuredImages[2]['file']; ?>" 
+                  src="<?php echo $baseUrl; ?>/assets/images/<?php echo $featuredImages[2]['file']; ?>" 
                   alt="Videography sample - <?php echo htmlspecialchars(pathinfo($featuredImages[2]['file'], PATHINFO_FILENAME)); ?>"
                   class="featured-crop">
               </picture>
@@ -170,7 +170,7 @@ include 'includes/header.php';
           <div class="card-content">
             <h3>Videography</h3>
             <p>Creating compelling video content that tells your story with dynamic visuals and professional editing.</p>
-            <a href="/videography.php" class="card-link">Watch Videos</a>
+            <a href="videography.php" class="card-link">Watch Videos</a>
           </div>
         </div>
       </div>
@@ -184,7 +184,7 @@ include 'includes/header.php';
         <div class="about-content">
           <h2>About Eli Larson</h2>
           <p>I'm a passionate photographer and videographer dedicated to capturing the perfect moments that tell your story. With years of experience in sports media, I bring technical expertise and creative vision to every project.</p>
-          <a href="/about.php" class="about-link">Learn More About Me</a>
+          <a href="about.php" class="about-link">Learn More About Me</a>
         </div>
         <div class="about-image">
           <!-- You can add a professional headshot here -->
