@@ -36,8 +36,8 @@ ErrorDocument 500 /500.php
     Header set Permissions-Policy "interest-cohort=()"
     Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
     
-    # CORS headers
-    Header set Access-Control-Allow-Origin "*"
+    # CORS headers - restrict to specific domains in production
+    Header set Access-Control-Allow-Origin "https://eli-larson.com"
     Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
     Header set Access-Control-Allow-Headers "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type"
 </IfModule>

@@ -7,6 +7,20 @@ if (file_exists($orderDataFile)) {
     $orderData = json_decode($jsonData, true);
 }
 
+// Load image descriptions for tooltips
+$descriptionsFile = "data/image_descriptions.json";
+$imageDescriptions = [];
+if (file_exists($descriptionsFile)) {
+    $jsonData = file_get_contents($descriptionsFile);
+    $imageDescriptions = json_decode($jsonData, true);
+    // Remove any metadata keys that start with underscore
+    foreach ($imageDescriptions as $key => $value) {
+        if (substr($key, 0, 1) === '_') {
+            unset($imageDescriptions[$key]);
+        }
+    }
+}
+
 // Dynamically load images from assets/images folder
 $dirPath = "assets/images";
 $files = scandir($dirPath);
@@ -54,7 +68,13 @@ include 'includes/header.php';
     <section class="portfolio-grid">
       <?php foreach ($imageFiles as $img): ?>
       <div class="portfolio-item">
-        <picture>
+        <?php 
+        // Get description if available
+        $hasDescription = isset($imageDescriptions[$img['file']]);
+        $description = $hasDescription ? $imageDescriptions[$img['file']] : '';
+        ?>
+        <picture class="<?php echo $hasDescription ? 'has-tooltip' : ''; ?>"
+                <?php if ($hasDescription): ?> data-tooltip="<?php echo htmlspecialchars($description); ?>"<?php endif; ?>>
           <!-- WebP version -->
           <source
             type="image/webp"
@@ -70,6 +90,9 @@ include 'includes/header.php';
                loading="lazy"
                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">
         </picture>
+        <?php if ($hasDescription): ?>
+        <div class="info-indicator" aria-hidden="true">i</div>
+        <?php endif; ?>
       </div>
       <?php endforeach; ?>
     </section>

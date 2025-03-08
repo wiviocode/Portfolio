@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     }, {
-      rootMargin: '50px 0px 200px 0px', // Increased top margin for earlier loading
-      threshold: 0.01 // Trigger with just 1% visibility
+      rootMargin: '100px 0px 300px 0px', // Increased margins for earlier loading
+      threshold: 0 // Trigger as soon as any part enters viewport
     });
     
     images.forEach(function(picture) {
@@ -206,11 +206,9 @@ document.addEventListener('DOMContentLoaded', function() {
           .then(() => {
             // Success - add playing class
             videoItem.classList.add('playing');
-            console.log('Video playing successfully');
           })
           .catch(error => {
             // Handle error
-            console.error('Video play error:', error);
             alert('There was an issue playing this video. Please try again.');
           });
       } else {
@@ -256,13 +254,14 @@ document.addEventListener('DOMContentLoaded', () => {
   header.classList.remove('hide');
 });
 
-// Debounced scroll listener
-let scrollTimeout;
+// Optimized scroll listener using requestAnimationFrame
+let ticking = false;
 window.addEventListener('scroll', () => {
-  if (!scrollTimeout) {
-    scrollTimeout = setTimeout(() => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
       handleScroll();
-      scrollTimeout = null;
-    }, 10);
+      ticking = false;
+    });
+    ticking = true;
   }
 });

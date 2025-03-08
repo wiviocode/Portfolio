@@ -22,6 +22,20 @@ function getBaseUrl() {
     return $protocol . $domainName . $scriptName;
 }
 
+// Helper function to add cache busting version to file URLs
+function getVersionedUrl($path) {
+    global $baseUrl;
+    $absolutePath = __DIR__ . '/..' . $path;
+    
+    if (file_exists($absolutePath)) {
+        $version = filemtime($absolutePath);
+        return $baseUrl . $path . '?v=' . $version;
+    }
+    
+    // Fallback to the non-versioned URL
+    return $baseUrl . $path;
+}
+
 $baseUrl = getBaseUrl();
 
 // Get the current page for active menu highlighting
@@ -60,9 +74,6 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://www.googletagmanager.com">
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   
   <!-- Security Headers -->
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -103,14 +114,13 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
   
   <!-- CSS with preload for critical resources -->
   <?php
-  // Ensure we have the actual CSS file path
-  $cssPath = __DIR__ . '/../css/style.css';
-  $cssUrl = $baseUrl . '/css/style.css';
+  // Get versioned CSS URL
+  $cssUrl = getVersionedUrl('/css/style.css');
   
-  // Add cache busting if the file exists
-  if (file_exists($cssPath)) {
-    $cssModified = filemtime($cssPath);
-    $cssUrl .= '?v=' . $cssModified;
+  // Check for hero image to preload
+  $heroImagePath = __DIR__ . '/../assets/images/hero.jpg';
+  if (file_exists($heroImagePath)) {
+    echo '<link rel="preload" href="' . getVersionedUrl('/assets/images/hero.jpg') . '" as="image">';
   }
   ?>
   <link rel="preload" href="<?php echo $cssUrl; ?>" as="style">
@@ -191,8 +201,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
     }
   </style>
   
-  <!-- Preload fonts -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Newsreader:ital,wght@0,400;0,700;1,400;1,700&display=swap" as="style">
+  <!-- Google Fonts with optimization -->
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Newsreader:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   
   <!-- Add noscript fallback -->
@@ -226,5 +235,3 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
       </ul>
     </nav>
   </header>
-</body>
-</html> 

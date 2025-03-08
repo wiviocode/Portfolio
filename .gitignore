@@ -1,10 +1,75 @@
+# OS Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Editor directories and files
+.idea
+.vscode
+*.sublime-project
+*.sublime-workspace
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.project
+.classpath
+.settings/
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+*.sqlite3
+
+# Environment variables
+.env
+.env.local
+
+# PHP 
+vendor/
+composer.lock
+
+# Node
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+package-lock.json
+
+# React build outputs
+/eli-portfolio/dist/
+/eli-portfolio/build/
+
+# Cache and temp files
+/cache/
+/tmp/
+*.tmp
+*.bak
+*.php.bak
+*.swp
+
+# Large media files
+*.mp4
 *.MP4
 *.mov
+*.avi
+*.wmv
 *.png
 *.jpg
-/assets
-.DS_Store
-.DS_Store
 *.zip
-.DS_Store
+/assets
+
+# Generated files
+pre_launch_check_*.log
+
+# Specific to this project
+/data/*.local.json
+
+# Allow Claude assistant file
+# CLAUDE.md
 CLAUDE.md
+.htaccess

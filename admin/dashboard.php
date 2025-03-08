@@ -102,6 +102,12 @@ if (isset($_GET['logout'])) {
             </div>
             
             <div class="admin-card">
+                <h2>Video Titles</h2>
+                <p>Customize the titles of videos in your videography portfolio.</p>
+                <a href="edit_video_titles.php" class="admin-btn">Edit Video Titles</a>
+            </div>
+            
+            <div class="admin-card">
                 <h2>Upload Files</h2>
                 <p>Upload new images and videos to your portfolio.</p>
                 <a href="upload.php" class="admin-btn">Upload Files</a>
@@ -111,6 +117,12 @@ if (isset($_GET['logout'])) {
                 <h2>Video Thumbnails</h2>
                 <p>Generate thumbnails for videos that don't have one.</p>
                 <a href="generate_thumbnails.php" class="admin-btn">Generate Thumbnails</a>
+            </div>
+            
+            <div class="admin-card">
+                <h2>Image Descriptions</h2>
+                <p>Add hover tooltips with descriptions for your photography.</p>
+                <a href="edit_descriptions.php" class="admin-btn">Edit Descriptions</a>
             </div>
         </div>
         

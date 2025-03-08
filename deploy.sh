@@ -57,8 +57,27 @@ else
 fi
 echo ""
 
-# Step 5: Compress JavaScript files
-echo -e "${YELLOW}=== STEP 5: COMPRESSING JAVASCRIPT FILES ===${NC}"
+# Step 5: Build React app if present
+echo -e "${YELLOW}=== STEP 5: BUILDING REACT APPLICATION ===${NC}"
+if [ -d "eli-portfolio" ]; then
+    cd eli-portfolio
+    if [ -f "package.json" ]; then
+        echo "Found React app, building production version..."
+        npm ci
+        check_status "NPM dependencies installation"
+        npm run build
+        check_status "React app build"
+    else
+        echo -e "${YELLOW}⚠ No package.json found in eli-portfolio. Skipping React build.${NC}"
+    fi
+    cd ..
+else
+    echo -e "${YELLOW}⚠ No React app directory found. Skipping React build.${NC}"
+fi
+echo ""
+
+# Step 6: Compress JavaScript files
+echo -e "${YELLOW}=== STEP 6: COMPRESSING JAVASCRIPT FILES ===${NC}"
 if command -v uglifyjs &> /dev/null; then
     for file in js/*.js; do
         if [[ $file != *".min.js" ]]; then
@@ -72,8 +91,8 @@ else
 fi
 echo ""
 
-# Step 6: Clean up development files
-echo -e "${YELLOW}=== STEP 6: CLEANING UP DEVELOPMENT FILES ===${NC}"
+# Step 7: Clean up development files
+echo -e "${YELLOW}=== STEP 7: CLEANING UP DEVELOPMENT FILES ===${NC}"
 dev_files=(
     "create_og_image.php"
     "pre_launch_check.php"
@@ -100,7 +119,7 @@ else
 fi
 echo ""
 
-# Step 7: Final confirmation
+# Step 8: Final confirmation
 echo -e "${YELLOW}=== DEPLOYMENT COMPLETE ===${NC}"
 echo -e "Completed at: $(date)"
 echo -e "${GREEN}Your website is ready to be published!${NC}"

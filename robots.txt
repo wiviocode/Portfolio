@@ -1,7 +1,8 @@
 User-agent: *
 Allow: /
-Allow: /about
-Allow: /videography
+Allow: /about.php
+Allow: /photography.php
+Allow: /videography.php
 Allow: /assets/images/
 Allow: /css/
 Allow: /js/
@@ -10,9 +11,18 @@ Allow: /js/
 Disallow: /admin/
 Disallow: /includes/
 Disallow: /data/
+Disallow: /eli-portfolio/node_modules/
+Disallow: /*.json$
+Disallow: /*.md$
+Disallow: /*.log$
+Disallow: /*.bak$
+Disallow: /*.php.bak$
+Disallow: /deploy.sh
+Disallow: /convert_images.php
+Disallow: /pre_launch_check.php
 
 # Sitemap
-Sitemap: https://eli-larson.com/sitemap.xml
+Sitemap: https://eli-larson.com/sitemap.php
 
 # Crawl-delay for better server performance
-Crawl-delay: 10 
+Crawl-delay: 5
