@@ -129,6 +129,19 @@ include 'includes/header.php';
     const closeButton = document.querySelector('.close-video');
     let currentVideo = null;
     
+    // Prevent the grid videos from playing when clicked
+    document.querySelectorAll('.video-item video').forEach(video => {
+      // Add the 'disablePlay' property to videos in the grid
+      video.disablePlay = true;
+      
+      // Prevent default play behavior by immediately pausing
+      video.addEventListener('play', function(e) {
+        if (this.disablePlay) {
+          this.pause();
+        }
+      });
+    });
+    
     // Function to open the lightbox
     function openVideoLightbox(videoSrc, videoTitle) {
       // Set the video source and load it
@@ -177,6 +190,11 @@ include 'includes/header.php';
         const video = document.getElementById(videoId);
         const videoTitle = this.querySelector('.video-title').textContent;
         const videoSrc = video.querySelector('source').getAttribute('src');
+        
+        // Make sure the original video is paused
+        if (video && !video.paused) {
+          video.pause();
+        }
         
         // Open the lightbox with this video
         openVideoLightbox(videoSrc, videoTitle);

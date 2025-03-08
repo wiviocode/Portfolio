@@ -183,7 +183,7 @@ include 'includes/header.php';
       <div class="about-grid">
         <div class="about-content">
           <h2>About Eli Larson</h2>
-          <p>I'm a passionate photographer and videographer dedicated to capturing the perfect moments that tell your story. With years of experience in sports media, I bring technical expertise and creative vision to every project.</p>
+          <p>Passionate photographer and videographer dedicated to telling your story. With years of experience in sports media, I bring technical and creative vision to every project.</p>
           <a href="about.php" class="about-link">Learn More About Me</a>
         </div>
         <div class="about-image">
