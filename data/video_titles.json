@@ -1,5 +1,8 @@
 {
     "_comment": "This file stores custom titles for videos",
     "_format": "The keys should be the filename (without path) and values are the titles",
+    "Timeline1.mov": "Missouri Recap",
+    "SeasonFinalePre-MeetCinematic.mov": "Season Finale Pre Meet Cinematic",
+    "HuskerClassicShortRecap.MP4": "Husker Classic Short Recap",
     "Color Grade Example.mov": "Color Example"
 }

@@ -1,7 +1,8 @@
 <?php
-// Include authentication
-include_once '../includes/header.php';
+// Include authentication first to start session before any output
 include_once 'includes/auth.php';
+// Then include header which outputs HTML
+include_once '../includes/header.php';
 
 // File paths
 $descriptionsFile = "../data/image_descriptions.json";
