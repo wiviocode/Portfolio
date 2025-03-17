@@ -61,7 +61,7 @@ package-lock.json
 *.png
 *.jpg
 *.zip
-/assets
+*.webp
 
 # Generated files
 pre_launch_check_*.log
@@ -73,4 +73,5 @@ pre_launch_check_*.log
 # CLAUDE.md
 CLAUDE.md
 .htaccess
+.DS_Store
 .DS_Store
